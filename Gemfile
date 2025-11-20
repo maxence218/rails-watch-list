@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 
-gem "bootstrap", "~> 5.3"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
-gem "simple_form"
 gem "sassc-rails"
+gem "simple_form"
+gem 'simple_form-tailwind'
 
 ruby "3.3.5"
 
@@ -68,3 +68,5 @@ end
 
 gem 'rspec-rails', group: [ :test ]
 gem 'rails-controller-testing', group: [ :test ]
+
+gem "tailwindcss-rails", "~> 4.4"

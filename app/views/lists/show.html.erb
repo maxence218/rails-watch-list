@@ -1,0 +1,19 @@
+
+<div class="container">
+ <div class="card">
+    <ul>
+      <% @bookmarks.each do |bookmark| %>
+        <div class="flex justify-evenly">
+          <li><%= Movie.find(bookmark.movie_id).title %></li>
+          <div><%= link_to "Delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Supprimer ?" } %></div>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment, placeholder: " comment" %>
+  <%= f.association :movie %>
+  <%= f.submit %>
+<% end %>
+</div>

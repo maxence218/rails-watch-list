@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="grid grid-cols-3 gap-4">
+
+    <% @lists.each do |list| %>
+
+      <div class="card bg-base-100 w-96 shadow-sm>
+        <figure class="px-10 pt-10">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+            alt=""
+            class="rounded-xl" />
+        </figure>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title"><%= list.name %></h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="card-actions">
+            <%= link_to "See full list", list_path(list.id) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+<div class="card card-border bg-base-100 w-96">
+  <div class="card-body">
+    <%= simple_form_for @newList do |f|%>
+      <%= f.input :name, placeholder: ' Action list' %>
+      <%= f.submit %>
+    <% end %>
+
+  </div>
+</div>

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+@plugin "daisyui";
+
+.container{
+  margin: 0 auto;
+}

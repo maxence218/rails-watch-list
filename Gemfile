@@ -75,3 +75,5 @@ gem 'rails-controller-testing', group: [ :test ]
 
 
 gem "tailwindcss-rails", "~> 4.4"
+
+gem "cssbundling-rails", "~> 1.4"

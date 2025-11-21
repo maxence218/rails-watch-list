@@ -1,19 +1,42 @@
 
 <div class="container">
- <div class="card">
-    <ul>
+    <div id="ListName" class="flex justify-center">
+      <h1 class="text-white capitalize p-4 text-6xl w-fit bg-black "><%= @list.name %>'s film</h1>
+    </div>
+  <div class="card">
+    <div class="grid grid-cols-3 gap-4">
       <% @bookmarks.each do |bookmark| %>
-        <div class="flex justify-evenly">
-          <li><%= Movie.find(bookmark.movie_id).title %></li>
-          <div><%= link_to "Delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Supprimer ?" } %></div>
+        <div class="card w-96 bg-base-100 shadow-sm p-2 mb-2">
+          <div class="flex justify-center p-2">
+            <h2 class="text-center p-2 border rounded-4xl"><%= Movie.find(bookmark.movie_id).title %></h2>
+          </div>
+          <figure>
+            <%= image_tag( Movie.find( bookmark.movie_id).poster_url) %>
+          </figure>
+          <div class="card-body">
+            <p class="card shadow-sm p-4 capitalize"><%= bookmark.comment %></p>
+            <div class="card-actions justify-end">
+              <%= link_to "Remove from list", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Supprimer ?" }, :class => "  bg-red-100 p-1 rounded btn" %>
+            </div>
+          </div>
         </div>
       <% end %>
-    </ul>
+    </div>
   </div>
 
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.input :comment, placeholder: " comment" %>
-  <%= f.association :movie %>
-  <%= f.submit %>
-<% end %>
+  <div class="card bg-base-100 shadow-sm p-4 min-w-4xl">
+    <div>
+      <%= simple_form_for [@list, @bookmark] do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :comment, placeholder: " Add your description " %>
+        <%= f.association :movie %>
+        <%= f.button :submit, "Add to #{@list.name}", class: "capitalize"%>
+      <% end %>
+    </div>
+    <div class="pt-4">
+      <%= link_to "Home page",  lists_path, :class => "shadow p-2 rounded btn" %>
+    </div>
+  </div>
+
+
 </div>

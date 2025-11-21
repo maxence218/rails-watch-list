@@ -11,11 +11,14 @@ class ListsController < ApplicationController
   end
 
   def create
-    list = List.new(list_params)
-    if list.save
+    @newList = List.new(list_params)
+
+    if @newList.save
       redirect_to lists_path
     else
-      render :new, status: :unprocessable_entity
+      @lists = List.all
+      @bookmarks = @newList.bookmarks
+      render :index, status: :unprocessable_entity
     end
   end
 

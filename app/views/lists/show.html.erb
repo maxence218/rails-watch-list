@@ -5,13 +5,13 @@
     </div>
   <div class="card">
     <div class="grid grid-cols-3 gap-4">
-      <% @bookmarks.each do |bookmark| %>
+      <% @bookmarks.where.not(id: nil).each do |bookmark| %>
         <div class="card w-96 bg-base-100 shadow-sm p-2 mb-2">
           <div class="flex justify-center p-2">
-            <h2 class="text-center p-2 border rounded-4xl"><%= Movie.find(bookmark.movie_id).title %></h2>
+            <h2 class="text-center p-2 border rounded-4xl"><%= bookmark.movie&.title || "Film introuvable" %></h2>
           </div>
           <figure>
-            <%= image_tag( Movie.find( bookmark.movie_id).poster_url) %>
+            <%= image_tag(bookmark.movie&.poster_url || "") %>
           </figure>
           <div class="card-body">
             <p class="card shadow-sm p-4 capitalize"><%= bookmark.comment %></p>
